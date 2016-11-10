@@ -80,4 +80,3 @@ Rails.application.configure do
   # Added as per devise installation instructions
   config.action_mailer.default_url_options = { host: 'pinnuendo.herokuapp.com', port: 3000 }
 end
-end
