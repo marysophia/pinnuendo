@@ -4,15 +4,24 @@
   <% @pins.each do |pin| %>
 
     <div class="box panel panel-default">
-      <%= link_to image_tag(pin.image.url(:medium)), pin %><br/>
-      <%= pin.description %><br/>
-      <%= pin.user.name if pin.user %><br/>
+      <%= link_to image_tag(pin.image.url(:medium)), pin %>
+      <div class="panel-body">
+        <%= pin.description %><br/>
+        <%= pin.user.name if pin.user %><br/>
+      </div>
     
       <% if pin.user == current_user %>
-        <%= link_to 'Edit', edit_pin_path(pin) %>
-        <%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'You sure about that?' } %>
+        <div class="panel-footer">
+          <%= link_to 'Edit', edit_pin_path(pin) %> |
+          <%= link_to 'Delete', pin, method: :delete, data: { confirm: 'You sure about that?' } %>
+        </div>
       <% end %>
     </div>
   
   <% end %>
+</div>
+
+<br/>
+<div class="center">
+  <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
 </div>
